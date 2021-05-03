@@ -1,9 +1,19 @@
 import tkinter as tk
-import cv2 as cv2
 
-
-def Red(x,y):
+def Suma(x,y):
 
     return x+y
 
-print(Red(5,4))
+def Interface():
+
+    Ventana=tk.Tk()
+
+    Ventana.title("Proyecto concurso")
+
+    Frame1=tk.Frame(Ventana)
+
+    Texto=tk.Label(Frame1,text=Suma(4,5))
+
+    Ventana.mainloop()
+
+Interface()
