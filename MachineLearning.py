@@ -1,22 +1,22 @@
 import tkinter as tk
 
-def Michi(Frame):
+Ventana=tk.Tk()
+Ventana.title("Proyecto Concurso")
+Ventana.geometry("600x600")
+Ventana.resizable(0,0)
 
-    Foto=tk.PhotoImage(file="MiChi.png")
-    Imagen=tk.Label(Frame,image=Foto)
+Frame1=tk.Frame(Ventana)
+Frame1.pack()
 
-def Interface():
+Frame2=tk.Frame(Ventana)
+Frame2.pack()
 
-    Ventana=tk.Tk()
+Texto=tk.Label(Frame1,text="Juego Tres en Raya")
+Texto.grid(row=0,column=0)
 
-    Ventana.title("Proyecto concurso")
+Foto=tk.PhotoImage(file="MiChi.png")
+Foto.subsample(4)
+Imagen=tk.Label(Frame2,image=Foto)
+Imagen.grid(row=0,column=0)
 
-    Frame1=tk.Frame(Ventana)
-    Frame1.grid(row=0,column=0)
-
-    Michi(Frame1)
-
-    Ventana.mainloop()
-
-
-Interface()
+Ventana.mainloop()
