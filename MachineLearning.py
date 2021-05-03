@@ -1,8 +1,9 @@
 import tkinter as tk
 
-def Suma(x,y):
+def Michi(Frame):
 
-    return x+y
+    Foto=tk.PhotoImage(file="MiChi.png")
+    Imagen=tk.Label(Frame,image=Foto)
 
 def Interface():
 
@@ -11,9 +12,11 @@ def Interface():
     Ventana.title("Proyecto concurso")
 
     Frame1=tk.Frame(Ventana)
+    Frame1.grid(row=0,column=0)
 
-    Texto=tk.Label(Frame1,text=Suma(4,5))
+    Michi(Frame1)
 
     Ventana.mainloop()
+
 
 Interface()
