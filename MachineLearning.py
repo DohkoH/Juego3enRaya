@@ -2,12 +2,15 @@ import tkinter as tk
 import time
 import random
 import os
-from tkinter.constants import ACTIVE, DISABLED, TOP, TRUE
+from tkinter.constants import ACTIVE, BOTTOM, DISABLED, RIGHT, SE, TOP, TRUE
 from PIL import Image ,ImageTk
 
 matriz = [" "] * 9
 ganador=0
 
+TextoM =  "Seleccion de ficha."
+
+turno=1
 
 #DibujoSimbolos
 
@@ -16,6 +19,14 @@ def DibujarX():
     global Frame2
 
     global Pos
+
+    global TextoM
+
+    global turno
+
+    TextoM="Primer turno de X"
+
+    time.sleep(10)
 
     P=int(Pos.get())
 
@@ -136,75 +147,44 @@ def ganar(matriz):
 		return False
 
 
-# Movimientos
-
-def movimiento_jugador():
-	while True:
-		posiciones = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-		casilla = int(Pos.get())
-		if casilla not in posiciones:
-			print("Casilla no disponible")
-
-		else:
-			if matriz[casilla-1] == " ":
-				matriz[casilla-1] = persona
-				break
-			else:
-				print("Casilla no disponible")
-
-def movimiento_computador():
-	posiciones = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-	casilla = 9
-	parar = False
-
-	for i in posiciones:
-		copia = list(matriz)
-		if copia[i] == " ":
-			copia[i] = computador
-			if ganar(copia) == True:
-				casilla = i
-
-	if casilla == 9:
-		for j in posiciones:
-			if copia[j] == " ":
-				copia[j] = persona
-				if ganar(copia) == True:
-					casilla = j
-
-	if casilla == 9:
-		while(not parar):
-			casilla = random.randint(0, 8)
-			if matriz[casilla] == " ":
-				parar = True
-	matriz[casilla] = computador
-
 #Ventana
 
 Ventana=tk.Tk()
 Ventana.title("Proyecto Concurso")
-Ventana.geometry("550x700")
+Ventana.geometry("550x660")
 Ventana.resizable(0,0)
 
 #Frame
 
 Frame1=tk.Frame(Ventana)
-Frame1.pack()
+Frame1.pack(fill="x")
 
 Frame2=tk.Frame(Ventana)
-Frame2.pack()
+Frame2.pack(fill="x")
 
 Frame3=tk.Frame(Ventana)
-Frame3.pack()
+Frame3.pack(fill="x")
 
-#Titulo
+Frame4=tk.Frame(Ventana,height=100)
+Frame4.config(relief="ridge",bd=4)
+Frame4.pack(fill="x")
 
-Texto=tk.Label(Frame1,text="Juego Tres en Raya")
-Texto.config(fg="red")
-Texto.pack(side=tk.TOP)
+
+#Texto
+
+Titulo=tk.Label(Frame1,text="Juego Tres en Raya")
+Titulo.config(fg="red")
+Titulo.pack(side=tk.TOP)
 
 
 TextoPosicion=tk.Label(Frame3,text="Escoja la posicion")
 TextoPosicion.pack(side=tk.TOP)
+
+TextoEstado=tk.Label(Frame4,text="El estado del juego :")
+TextoEstado.pack(side=tk.LEFT)
+
+TextoModificable=tk.Label(Frame4,text=TextoM)
+TextoModificable.pack(side=tk.LEFT)
 
 #Fondo
 
@@ -214,10 +194,10 @@ Imagen.grid(row=0,column=0,columnspan=3)
 
 #Botones
 
-BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5)
+BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5,cursor="tcross")
 BotonX.pack(side=tk.LEFT)
 
-BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5)
+BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5,cursor="circle")
 BotonC.pack(side=tk.RIGHT)
 
 BotonReinicio = tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(),padx=5,pady=5,state=DISABLED)
