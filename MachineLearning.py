@@ -21,11 +21,7 @@ def DibujarX():
     global TextoM
 
 
-<<<<<<< HEAD
-    TextoM="Primer turno de X."
-=======
     TextoM.set("Turno de la ficha X.")
->>>>>>> c50d277e1f3047f63ed15db3ef62a85f3f83a864
 
     P=int(Pos.get())
 
@@ -56,7 +52,8 @@ def DibujarX():
 
     
     elif P <= 0 or P >10 or P == "":
-        print("Casilla no valida.")
+        
+        TextoM.set("Casilla no valida.")
 
     Pos.set("")
 
@@ -98,7 +95,7 @@ def DibujarC():
 
     
     else:
-        print("Casilla no valida.")
+        TextoM.set("Casilla no valida.")
 
     Pos.set("")
 
@@ -173,12 +170,12 @@ Frame1.pack(fill="x")
 Frame2=tk.Frame(Ventana)
 Frame2.pack(fill="x")
 
-Frame3=tk.Frame(Ventana)
+Frame3=tk.Frame(Ventana,height=80)
 Frame3.pack(fill="x")
 
 Frame4=tk.Frame(Ventana)
-Frame4.config(relief="ridge",bd=2)
-Frame4.pack(fill="x")
+Frame4.config(relief="groove",bd=1)
+Frame4.pack(fill="x",side=BOTTOM)
 
 
 #Texto
@@ -188,8 +185,8 @@ Titulo.config(fg="red")
 Titulo.pack(side=tk.TOP)
 
 
-TextoPosicion=tk.Label(Frame3,text="Escoja la posicion")
-TextoPosicion.pack(side=tk.TOP)
+TextoPosicion=tk.Label(Frame3,text="Posicion:")
+TextoPosicion.place(x=180,y=0)
 
 TextoEstado=tk.Label(Frame4,text="El estado del juego :")
 TextoEstado.pack(side=tk.LEFT)
@@ -209,19 +206,19 @@ Imagen.grid(row=0,column=0,columnspan=3)
 #Botones
 
 BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5,cursor="cross")
-BotonX.pack(side=tk.LEFT)
+BotonX.place(x=50,y=30)
 
 BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5,cursor="circle")
-BotonC.pack(side=tk.RIGHT)
+BotonC.place(x=390,y=30)
 
 BotonReinicio = tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(),padx=5,pady=5,state=DISABLED)
-BotonReinicio.pack(side=tk.BOTTOM)
+BotonReinicio.place(x=250,y=30)
 
 #CuadroPosicion
 
 Pos=tk.StringVar()
 
 Posicion = tk.Entry(Frame3,textvariable=Pos)
-Posicion.pack(side=tk.TOP,after=TextoPosicion)
+Posicion.place(x=250,y=0)
 
 Ventana.mainloop()
