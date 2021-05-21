@@ -22,11 +22,8 @@ def DibujarX():
 
     global TextoM
 
-    global turno
 
-    TextoM="Primer turno de X"
-
-    time.sleep(10)
+    TextoM="Primer turno de X."
 
     P=int(Pos.get())
 
