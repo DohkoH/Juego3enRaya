@@ -173,7 +173,7 @@ Frame2.pack(fill="x")
 Frame3=tk.Frame(Ventana,height=80)
 Frame3.pack(fill="x")
 
-Frame4=tk.Frame(Ventana)
+Frame4=tk.Frame(Ventana,height=10)
 Frame4.config(relief="groove",bd=1)
 Frame4.pack(fill="x",side=BOTTOM)
 
@@ -202,6 +202,31 @@ TextoModificable.pack(side=tk.LEFT)
 Foto=tk.PhotoImage(file="MiChi.png")
 Imagen=tk.Label(Frame2,image=Foto)
 Imagen.grid(row=0,column=0,columnspan=3)
+
+#Numero de Posiciones
+
+for i in range (1,10) :
+
+        if i<10 :
+            if i<4 :
+                y=30
+            elif i<7:
+                y=200
+            else:
+                y=370
+
+        if i<10 :
+            if i==1 or i==4 or i ==7 :
+                x=30
+            elif i==2 or i==5 or i ==8:
+                x=200
+            else:
+                x=370
+
+
+        Numero=tk.Label(Frame2,text=str(i),font=("50"))
+        Numero.place(x=x,y=y)
+
 
 #Botones
 
