@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox
 import time
 import random
 import os
@@ -18,12 +19,13 @@ def DibujarX():
 
     global Pos
 
-    global TextoM
-
+    global matriz
 
     TextoM.set("Turno de la ficha X.")
 
     P=int(Pos.get())
+
+    matriz[P-1]="X"
 
     if P<10 :
         if P<4 :
@@ -55,6 +57,8 @@ def DibujarX():
         
         TextoM.set("Casilla no valida.")
 
+    ganar(matriz)
+
     Pos.set("")
 
     TextoM.set("Turno de la ficha O.")
@@ -66,7 +70,11 @@ def DibujarC():
 
     global Pos
 
+    global matriz
+
     P=int(Pos.get())
+
+    matriz[P-1]="O"
 
     TextoM.set("Turno de la ficha O.")
 
@@ -93,13 +101,16 @@ def DibujarC():
         BotonC.config(state=DISABLED)
         BotonReinicio.config(state=ACTIVE)
 
-    
     else:
         TextoM.set("Casilla no valida.")
+    
+    ganar(matriz)
 
     Pos.set("")
 
     TextoM.set("Turno de la ficha X.")
+
+
 
 # Definir finales de partida
 
@@ -147,10 +158,16 @@ def empate(matriz):
 	return empate
 
 def ganar(matriz):
+
+
 	if(matriz[0] == matriz[1] == matriz[2]!= " " or matriz[3] == matriz[4] == matriz[5]!= " " or matriz[6] == matriz[7] == matriz[8]!= " " 
 		or matriz[0] == matriz[3] == matriz[6]!= " " or matriz[1] == matriz[4] == matriz[7]!= " " or matriz[2] == matriz[5] == matriz[8]!= " " or 
 		matriz[0] == matriz[4] == matriz[8]!= " " or matriz[2] == matriz[4] == matriz[6]!= " "):
-		return True
+		
+            print("Fin de la partida.")
+            
+            messagebox.showinfo(message="Ganador ficha "+ matriz[1] ,title="Fin de la Partida.")
+
 	else:
 		return False
 
