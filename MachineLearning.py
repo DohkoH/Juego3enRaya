@@ -8,8 +8,6 @@ from PIL import Image ,ImageTk
 matriz = [" "] * 9
 ganador=0
 
-TextoM =  "Seleccion de ficha."
-
 turno=1
 
 #DibujoSimbolos
@@ -23,7 +21,11 @@ def DibujarX():
     global TextoM
 
 
+<<<<<<< HEAD
     TextoM="Primer turno de X."
+=======
+    TextoM.set("Turno de la ficha X.")
+>>>>>>> c50d277e1f3047f63ed15db3ef62a85f3f83a864
 
     P=int(Pos.get())
 
@@ -57,6 +59,8 @@ def DibujarX():
         print("Casilla no valida.")
 
     Pos.set("")
+
+    TextoM.set("Turno de la ficha O.")
     
 
 def DibujarC():
@@ -66,6 +70,8 @@ def DibujarC():
     global Pos
 
     P=int(Pos.get())
+
+    TextoM.set("Turno de la ficha O.")
 
     if P<10 :
         if P<4 :
@@ -96,11 +102,15 @@ def DibujarC():
 
     Pos.set("")
 
+    TextoM.set("Turno de la ficha X.")
+
 # Definir finales de partida
 
 def Reinicio():
 
-    for i in range (1,9) :
+    TextoM.set("Reiniciando el juego.")
+
+    for i in range (1,10) :
 
         if i<10 :
             if i<4 :
@@ -118,8 +128,12 @@ def Reinicio():
             else:
                 x=400
 
+
         areaDibujo = tk.Canvas(Frame2,width=80,height=80)
         areaDibujo.place(x=x,y=y)
+
+
+    TextoM.set("Seleccion de ficha.")
 
     BotonC.config(state=ACTIVE)
     BotonX.config(state=ACTIVE)
@@ -162,8 +176,8 @@ Frame2.pack(fill="x")
 Frame3=tk.Frame(Ventana)
 Frame3.pack(fill="x")
 
-Frame4=tk.Frame(Ventana,height=100)
-Frame4.config(relief="ridge",bd=4)
+Frame4=tk.Frame(Ventana)
+Frame4.config(relief="ridge",bd=2)
 Frame4.pack(fill="x")
 
 
@@ -180,7 +194,10 @@ TextoPosicion.pack(side=tk.TOP)
 TextoEstado=tk.Label(Frame4,text="El estado del juego :")
 TextoEstado.pack(side=tk.LEFT)
 
+TextoM=tk.StringVar()
+TextoM.set("Selecion de ficha.")
 TextoModificable=tk.Label(Frame4,text=TextoM)
+TextoModificable.config(textvariable=TextoM)
 TextoModificable.pack(side=tk.LEFT)
 
 #Fondo
@@ -191,7 +208,7 @@ Imagen.grid(row=0,column=0,columnspan=3)
 
 #Botones
 
-BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5,cursor="tcross")
+BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5,cursor="cross")
 BotonX.pack(side=tk.LEFT)
 
 BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5,cursor="circle")
