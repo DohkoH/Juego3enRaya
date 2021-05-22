@@ -59,6 +59,8 @@ def DibujarX():
 
     ganar(matriz,"X")
 
+    empate(matriz)
+
     Pos.set("")
 
     TextoM.set("Turno de la ficha O.")
@@ -106,6 +108,8 @@ def DibujarC():
     
     ganar(matriz,"O")
 
+    empate(matriz)
+
     Pos.set("")
 
     TextoM.set("Turno de la ficha X.")
@@ -142,9 +146,6 @@ def Reinicio(matriz):
 
         matriz[i-1]=" "
 
-    print(matriz)    
-
-
     TextoM.set("Seleccion de ficha.")
 
     BotonC.config(state=ACTIVE)
@@ -153,9 +154,19 @@ def Reinicio(matriz):
 
 def empate(matriz):
 	
-    if len(matriz)>=9:
+    a=0
+
+    for i in range(1,10):
+
+        if matriz[i-1] !=  " ":
+
+            a=a+1
+
+    if a == 9:
 
         messagebox.showinfo(message="Empate.",title="Fin de la Partida.")
+
+        Reinicio(matriz)
 
 
 def ganar(matriz,i):
