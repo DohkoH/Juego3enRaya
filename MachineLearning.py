@@ -190,6 +190,7 @@ def ganar(matriz,i):
             
             Reinicio(matriz)
 
+
 #Ventana
 
 Ventana=tk.Tk()
