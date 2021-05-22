@@ -1,10 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-import time
-import random
-import os
 from tkinter.constants import ACTIVE, BOTTOM, DISABLED, RIGHT, SE, TOP, TRUE
-from PIL import Image ,ImageTk
 
 matriz = [" "] * 9
 ganador=0
@@ -25,45 +21,51 @@ def DibujarX():
 
     P=int(Pos.get())
 
-    matriz[P-1]="X"
+    if matriz[P-1] == " ":
 
-    if P<10 :
-        if P<4 :
-            y=50
-        elif P<7:
-            y=230
-        else:
-            y=400
+        if P<10 :
 
-    if P<10 :
-        if P==1 or P==4 or P ==7 :
-            x=50
-        elif P==2 or P==5 or P ==8:
-            x=230
-        else:
-            x=400
+            matriz[P-1]="X"
 
-        areaDeDibujo1 = tk.Canvas(Frame2,width=80,height=80)
-        areaDeDibujo1.create_line(10, 10, 80, 80,width=4)
-        areaDeDibujo1.create_line(10, 80, 80, 10,width=4)
-        areaDeDibujo1.place(x=x,y=y)
+            if P<4 :
+                y=50
+            elif P<7:
+                y=230
+            else:
+                y=400
 
-        BotonC.config(state=ACTIVE)
-        BotonX.config(state=DISABLED)
-        BotonReinicio.config(state=ACTIVE)
+            if P==1 or P==4 or P ==7 :
+                x=50
+            elif P==2 or P==5 or P ==8:
+                x=230
+            else:
+                x=400
 
-    
-    elif P <= 0 or P >10 or P == "":
+            areaDeDibujo1 = tk.Canvas(Frame2,width=80,height=80)
+            areaDeDibujo1.create_line(10, 10, 80, 80,width=4)
+            areaDeDibujo1.create_line(10, 80, 80, 10,width=4)
+            areaDeDibujo1.place(x=x,y=y)
+
+            BotonC.config(state=ACTIVE)
+            BotonX.config(state=DISABLED)
+            BotonReinicio.config(state=ACTIVE)
+
+            ganar(matriz,"X")
+
+            empate(matriz)
+
+            
+            TextoM.set("Turno de la ficha O.")
         
+        elif P <= 0 or P >10 or P == "":
+            
+            TextoM.set("Casilla no valida.")
+
+    else:
         TextoM.set("Casilla no valida.")
-
-    ganar(matriz,"X")
-
-    empate(matriz)
 
     Pos.set("")
 
-    TextoM.set("Turno de la ficha O.")
     
 
 def DibujarC():
@@ -76,45 +78,53 @@ def DibujarC():
 
     P=int(Pos.get())
 
-    matriz[P-1]="O"
-
     TextoM.set("Turno de la ficha O.")
 
-    if P<10 :
-        if P<4 :
-            y=50
-        elif P<7:
-            y=230
-        else:
-            y=400
+    if matriz[P-1] == " ":
 
-    if P<10 :
-        if P==1 or P==4 or P ==7 :
-            x=50
-        elif P==2 or P==5 or P ==8:
-            x=230
-        else:
-            x=400
+        if P<10 :
+        
+            matriz[P-1]="O"
 
-        areaDeDibujo = tk.Canvas(Frame2,width=80,height=80)
-        areaDeDibujo.create_oval(0,0,80,80,width=4)
-        areaDeDibujo.place(x=x,y=y)
-        BotonX.config(state=ACTIVE)
-        BotonC.config(state=DISABLED)
-        BotonReinicio.config(state=ACTIVE)
+            if P<4 :
+                y=50
+            elif P<7:
+                y=230
+            else:
+                y=400
+
+            if P==1 or P==4 or P ==7 :
+                x=50
+            elif P==2 or P==5 or P ==8:
+                x=230
+            else:
+                x=400
+
+            areaDeDibujo = tk.Canvas(Frame2,width=80,height=80)
+            areaDeDibujo.create_oval(0,0,80,80,width=4)
+            areaDeDibujo.place(x=x,y=y)
+            BotonX.config(state=ACTIVE)
+            BotonC.config(state=DISABLED)
+            BotonReinicio.config(state=ACTIVE)
+
+            ganar(matriz,"O")
+
+            empate(matriz)
+            
+            TextoM.set("Turno de la ficha X.")
+
+
+        else:
+
+            TextoM.set("Casilla no valida.")
 
     else:
-        TextoM.set("Casilla no valida.")
-    
-    ganar(matriz,"O")
 
-    empate(matriz)
+        TextoM.set("Casilla no valida.")
 
     Pos.set("")
 
-    TextoM.set("Turno de la ficha X.")
-
-
+    
 
 # Definir finales de partida
 
@@ -205,7 +215,7 @@ Frame4.pack(fill="x",side=BOTTOM)
 
 #Texto
 
-Titulo=tk.Label(Frame1,text="Juego Tres en Raya")
+Titulo=tk.Label(Frame1,text="Juego Tres en Raya",font=50)
 Titulo.config(fg="red")
 Titulo.pack(side=tk.TOP)
 
