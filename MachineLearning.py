@@ -57,7 +57,7 @@ def DibujarX():
         
         TextoM.set("Casilla no valida.")
 
-    ganar(matriz)
+    ganar(matriz,"X")
 
     Pos.set("")
 
@@ -104,7 +104,7 @@ def DibujarC():
     else:
         TextoM.set("Casilla no valida.")
     
-    ganar(matriz)
+    ganar(matriz,"O")
 
     Pos.set("")
 
@@ -114,7 +114,7 @@ def DibujarC():
 
 # Definir finales de partida
 
-def Reinicio():
+def Reinicio(matriz):
 
     TextoM.set("Reiniciando el juego.")
 
@@ -140,6 +140,10 @@ def Reinicio():
         areaDibujo = tk.Canvas(Frame2,width=80,height=80)
         areaDibujo.place(x=x,y=y)
 
+        matriz[i-1]=" "
+
+    print(matriz)    
+
 
     TextoM.set("Seleccion de ficha.")
 
@@ -148,29 +152,22 @@ def Reinicio():
     BotonReinicio.config(state=DISABLED)
 
 def empate(matriz):
-	empate = True
-	i = 0
-	while(empate == True and i < 9):
-		if matriz[i] ==" ":
-			empate = False
-		i = i + 1
+	
+    if len(matriz)>=9:
 
-	return empate
+        messagebox.showinfo(message="Empate.",title="Fin de la Partida.")
 
-def ganar(matriz):
+
+def ganar(matriz,i):
 
 
 	if(matriz[0] == matriz[1] == matriz[2]!= " " or matriz[3] == matriz[4] == matriz[5]!= " " or matriz[6] == matriz[7] == matriz[8]!= " " 
 		or matriz[0] == matriz[3] == matriz[6]!= " " or matriz[1] == matriz[4] == matriz[7]!= " " or matriz[2] == matriz[5] == matriz[8]!= " " or 
 		matriz[0] == matriz[4] == matriz[8]!= " " or matriz[2] == matriz[4] == matriz[6]!= " "):
-		
-            print("Fin de la partida.")
+		            
+            messagebox.showinfo(message="Ganador ficha "+ i ,title="Fin de la Partida.")
             
-            messagebox.showinfo(message="Ganador ficha "+ matriz[1] ,title="Fin de la Partida.")
-
-	else:
-		return False
-
+            Reinicio(matriz)
 
 #Ventana
 
@@ -253,7 +250,7 @@ BotonX.place(x=50,y=30)
 BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5,cursor="circle")
 BotonC.place(x=390,y=30)
 
-BotonReinicio = tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(),padx=5,pady=5,state=DISABLED)
+BotonReinicio = tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(matriz),padx=5,pady=5,state=DISABLED)
 BotonReinicio.place(x=250,y=30)
 
 #CuadroPosicion
