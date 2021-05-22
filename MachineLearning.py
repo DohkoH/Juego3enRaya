@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import random
 from tkinter.constants import ACTIVE, BOTTOM, DISABLED, RIGHT, SE, TOP, TRUE
 
 matriz = [" "] * 9
@@ -190,6 +191,32 @@ def ganar(matriz,i):
             
             Reinicio(matriz)
 
+#MovimientoPc
+
+def MovPc(a):
+
+    P=random(1,9)
+
+    if a==1:
+
+        DibujarC()
+
+    elif a==2:
+
+        DibujarX()
+
+#MovimientoPersona
+def MovPersona(a):
+    
+    P=Pos.get()
+
+    if a==1:
+
+        DibujarX()
+
+    elif a==2:
+
+        DibujarC()
 
 #Ventana
 
