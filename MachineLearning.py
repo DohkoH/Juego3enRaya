@@ -6,7 +6,7 @@ from tkinter.constants import ACTIVE, BOTTOM, DISABLED, RIGHT, SE, TOP, TRUE
 matriz = [" "] * 9
 ganador=0
 
-turno=1
+turno=0
 
 #DibujoSimbolos
 
@@ -306,7 +306,7 @@ BotonReinicio.place(x=250,y=30)
 
 Pos=tk.StringVar()
 
-Posicion = tk.Entry(Frame3,textvariable=Pos)
+Posicion = tk.Entry(Frame3,textvariable=Pos,width=5)
 Posicion.place(x=250,y=0)
 
 Ventana.mainloop()
