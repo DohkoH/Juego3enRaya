@@ -192,7 +192,6 @@ def ganar(matriz,i):
             Reinicio(matriz)
 
 #MovimientoPc
-
 def MovPc(a):
 
     P=random(1,9)
@@ -218,12 +217,35 @@ def MovPersona(a):
 
         DibujarC()
 
-#Ventana
+#Ventana de Seleccion
+VentanaS=tk.Tk()
+VentanaS.title("Proyecto Concurso")
+VentanaS.geometry("400x100")
+
+Titu=tk.Label(VentanaS,text="Juego 3 en raya.",fg="Red")
+Titu.place(x=150,y=0)
+
+Preg=tk.Label(VentanaS,text="Seleccion de Jugadores: ")
+Preg.place(x=10,y=30)
+
+BotonPc=tk.Button(VentanaS,text="Pc vs Pc")
+BotonPc.place(x=10,y=60)
+
+BotonPc=tk.Button(VentanaS,text="Jugador vs Pc")
+BotonPc.place(x=80,y=60)
+
+BotonPc=tk.Button(VentanaS,text="Jugador vs Jugador")
+BotonPc.place(x=200,y=60)
+
+VentanaS.mainloop()
+
+#VentanaPrincipal
 
 Ventana=tk.Tk()
 Ventana.title("Proyecto Concurso")
 Ventana.geometry("550x660")
 Ventana.resizable(0,0)
+
 
 #Frame
 
