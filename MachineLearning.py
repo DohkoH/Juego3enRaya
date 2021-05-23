@@ -6,7 +6,7 @@ from tkinter.constants import ACTIVE, BOTTOM, DISABLED, RIGHT, SE, TOP, TRUE
 matriz = [" "] * 9
 ganador=0
 
-turno=0
+seleccion=0
 
 #DibujoSimbolos
 
@@ -216,6 +216,18 @@ def MovPersona(a):
     elif a==2:
 
         DibujarC()
+#Funciones de Seleccion
+def PcvsJugador():
+    seleccion=2
+    VentanaS.destroy()
+
+def PcvsPc():
+    seleccion=1
+    VentanaS.destroy()
+
+def JugadorvsJugador():
+    seleccion=0
+    VentanaS.destroy()
 
 #Ventana de Seleccion
 VentanaS=tk.Tk()
@@ -228,14 +240,14 @@ Titu.place(x=150,y=0)
 Preg=tk.Label(VentanaS,text="Seleccion de Jugadores: ")
 Preg.place(x=10,y=30)
 
-BotonPc=tk.Button(VentanaS,text="Pc vs Pc")
-BotonPc.place(x=10,y=60)
+BotonPc=tk.Button(VentanaS,text="Jugador vs Jugador",command=JugadorvsJugador)
+BotonPc.place(x=30,y=60)
 
-BotonPc=tk.Button(VentanaS,text="Jugador vs Pc")
-BotonPc.place(x=80,y=60)
+BotonPc=tk.Button(VentanaS,text="Jugador vs PC",command=PcvsJugador)
+BotonPc.place(x=165,y=60)
 
-BotonPc=tk.Button(VentanaS,text="Jugador vs Jugador")
-BotonPc.place(x=200,y=60)
+BotonPc=tk.Button(VentanaS,text="PC  vs  PC",command=PcvsPc)
+BotonPc.place(x=280,y=60)
 
 VentanaS.mainloop()
 
@@ -271,7 +283,7 @@ Titulo.pack(side=tk.TOP)
 
 
 TextoPosicion=tk.Label(Frame3,text="Posicion:")
-TextoPosicion.place(x=180,y=0)
+TextoPosicion.place(x=220,y=0)
 
 TextoEstado=tk.Label(Frame4,text="El estado del juego :")
 TextoEstado.pack(side=tk.LEFT)
@@ -329,6 +341,6 @@ BotonReinicio.place(x=250,y=30)
 Pos=tk.StringVar()
 
 Posicion = tk.Entry(Frame3,textvariable=Pos,width=5)
-Posicion.place(x=250,y=0)
+Posicion.place(x=280,y=0)
 
 Ventana.mainloop()
