@@ -216,6 +216,7 @@ def MovPersona(a):
     elif a==2:
 
         DibujarC()
+        
 #Funciones de Seleccion
 def PcvsJugador():
     seleccion=2
