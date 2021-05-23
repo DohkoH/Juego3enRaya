@@ -4,7 +4,6 @@ import random
 from tkinter.constants import ACTIVE, BOTTOM, DISABLED, RIGHT, SE, TOP, TRUE
 
 matriz = [" "] * 9
-ganador=0
 
 seleccion=0
 
@@ -218,14 +217,23 @@ def MovPersona(a):
         DibujarC()
 #Funciones de Seleccion
 def PcvsJugador():
+    
+    global seleccion
+
     seleccion=2
     VentanaS.destroy()
 
 def PcvsPc():
+
+    global seleccion
+
     seleccion=1
     VentanaS.destroy()
 
 def JugadorvsJugador():
+    
+    global seleccion
+    
     seleccion=0
     VentanaS.destroy()
 
@@ -281,10 +289,6 @@ Titulo=tk.Label(Frame1,text="Juego Tres en Raya",font=50)
 Titulo.config(fg="red")
 Titulo.pack(side=tk.TOP)
 
-
-TextoPosicion=tk.Label(Frame3,text="Posicion:")
-TextoPosicion.place(x=220,y=0)
-
 TextoEstado=tk.Label(Frame4,text="El estado del juego :")
 TextoEstado.pack(side=tk.LEFT)
 
@@ -325,22 +329,35 @@ for i in range (1,10) :
         Numero.place(x=x,y=y)
 
 
-#Botones
+if seleccion == 0:
 
-BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5,cursor="cross")
-BotonX.place(x=50,y=30)
+    #Texto
+    TextoPosicion=tk.Label(Frame3,text="Posicion:")
+    TextoPosicion.place(x=220,y=0)
+    
+    #Botones
+    BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5,cursor="cross")
+    BotonX.place(x=50,y=30)
 
-BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5,cursor="circle")
-BotonC.place(x=390,y=30)
+    BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5,cursor="circle")
+    BotonC.place(x=390,y=30)
 
-BotonReinicio = tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(matriz),padx=5,pady=5,state=DISABLED)
-BotonReinicio.place(x=250,y=30)
+    BotonReinicio = tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(matriz),padx=5,pady=5,state=DISABLED)
+    BotonReinicio.place(x=250,y=30)
 
-#CuadroPosicion
+    #CuadroPosicion
 
-Pos=tk.StringVar()
+    Pos=tk.StringVar()
 
-Posicion = tk.Entry(Frame3,textvariable=Pos,width=5)
-Posicion.place(x=280,y=0)
+    Posicion = tk.Entry(Frame3,textvariable=Pos,width=5)
+    Posicion.place(x=280,y=0)
+    
+elif seleccion == 2:
+    TextoPcvsJugador=tk.Label(Frame3,text="Modo Pc vs Jugador ")
+    TextoPcvsJugador.place(x=220,y=40)
+
+elif seleccion == 1:
+    TextoPcvsPc=tk.Label(Frame3,text="Modo Pc vs Pc ")
+    TextoPcvsPc.place(x=220,y=40)
 
 Ventana.mainloop()
