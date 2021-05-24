@@ -11,7 +11,7 @@ ficha=0
 
 #DibujoSimbolos
 
-def DibujarX():
+def DibujarX(P):
 
     global Frame2
 
@@ -21,7 +21,7 @@ def DibujarX():
 
     TextoM.set("Turno de la ficha X.")
 
-    P=int(Pos.get())
+    #P=int(Pos.get())
 
     if matriz[P-1] == " ":
 
@@ -70,7 +70,7 @@ def DibujarX():
 
     
 
-def DibujarC():
+def DibujarC(P):
 
     global Frame2
 
@@ -78,7 +78,7 @@ def DibujarC():
 
     global matriz
 
-    P=int(Pos.get())
+    #P=int(Pos.get())
 
     TextoM.set("Turno de la ficha O.")
 
@@ -191,6 +191,20 @@ def ganar(matriz,i):
             messagebox.showinfo(message="Ganador ficha "+ i ,title="Fin de la Partida.")
             
             Reinicio(matriz)
+
+#JugadorvsJugador
+def JugadorC():
+
+    P=int(Pos.get())
+
+    DibujarC(P) 
+
+def JugadorX():
+
+    P=int(Pos.get())
+
+    DibujarX(P) 
+            
 #Selecion de Ficha
 
 def FichaX():
@@ -212,28 +226,30 @@ def FichaO():
 #MovimientoPc
 def MovPc(a):
 
-    P=random(1,9)
+    posi=random.randint(1,9)
 
     if a==1:
 
-        DibujarC()
+        DibujarC(posi)
 
-    elif a==2:
+    elif a==0:
 
-        DibujarX()
+        DibujarX(posi)
 
 #MovimientoPersona
-def MovPersona(a):
+def MovPersona(ficha):
     
-    P=Pos.get()
+    P=int(Pos.get())
 
-    if a==1:
+    if ficha==0:
 
-        DibujarX()
+        DibujarC(P)
 
-    elif a==2:
+    elif ficha==1:
 
-        DibujarC()
+        DibujarX(P)
+
+    MovPc(ficha)
         
 #Funciones de Seleccion
 def PcvsJugador():
@@ -373,10 +389,10 @@ if seleccion == 0:
     TextoPosicion.place(x=220,y=0)
     
     #Botones
-    BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5,cursor="cross")
+    BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: JugadorX(),padx=5,pady=5,cursor="cross")
     BotonX.place(x=50,y=30)
 
-    BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5,cursor="circle")
+    BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: JugadorC(),padx=5,pady=5,cursor="circle")
     BotonC.place(x=390,y=30)
 
     BotonReinicio = tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(matriz),padx=5,pady=5,state=DISABLED)
@@ -402,14 +418,15 @@ elif seleccion == 2:
     TextoPosicion.place(x=220,y=30)
     
     #Botones
-    if ficha == 0:
+    
 
-        BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: DibujarC(),padx=5,pady=5,cursor="circle")
+    BotonC = tk.Button(Frame3,text="Presionar para Circulo",command= lambda: MovPersona(ficha),padx=5,pady=5,cursor="circle")
+    BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: MovPersona(ficha),padx=5,pady=5,cursor="cross")
+    
+    if ficha == 0: 
         BotonC.place(x=50,y=30)
-
+    
     elif ficha == 1:
-
-        BotonX = tk.Button(Frame3,text="Presionar para X",command= lambda: DibujarX(),padx=5,pady=5,cursor="cross")
         BotonX.place(x=50,y=30)
 
     BotonReinicio = tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(matriz),padx=5,pady=5,state=DISABLED)
