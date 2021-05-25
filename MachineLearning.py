@@ -353,11 +353,14 @@ if seleccion == 0:
     Posicion.place(x=280,y=0)
     
 elif seleccion == 2:
+
     TextoPcvsJugador=tk.Label(Frame3,text="Modo Pc vs Jugador ")
-    TextoPcvsJugador.place(x=220,y=40)
+    TextoPcvsJugador.place(x=220,y=5)
 
 elif seleccion == 1:
+
     TextoPcvsPc=tk.Label(Frame3,text="Modo Pc vs Pc ")
-    TextoPcvsPc.place(x=220,y=40)
+    TextoPcvsPc.place(x=220,y=5)
+
 
 Ventana.mainloop()
