@@ -225,24 +225,37 @@ def FichaO():
     VentanaS2.destroy() 
 
 #MovimientoPc
-def MovPc(a):
+def MovPc(ficha):
 
-    posi=random.randint(1,9)
+    Cantidad=0
+
+    for i in range(0,9):
+
+        if matriz[i]==" ":
+
+            Cantidad+=1
+
+    print(Cantidad)
+
+    posicioneslibres=""
+
+    for i in range(0,9):
+
+        if matriz[i]==" ":
+
+            posicioneslibres=str(i)+posicioneslibres
+
+    print("Lista :"+str(posicioneslibres))
+
+    posi=int(random.choice(posicioneslibres))+1
 
     print(posi)
 
-    for i in range(1,10):
-
-        if matriz[i-1] ==  " ":
-
-            if posi==i:
-
-
-                if a==1:
+    if ficha==1:
                     
                     DibujarC(posi)
 
-                elif a==0:
+    elif ficha==0:
 
                     DibujarX(posi)
 
