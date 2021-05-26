@@ -1,3 +1,4 @@
+from math import radians
 import tkinter as tk
 from tkinter import messagebox
 import random
@@ -228,13 +229,22 @@ def MovPc(a):
 
     posi=random.randint(1,9)
 
-    if a==1:
+    print(posi)
 
-        DibujarC(posi)
+    for i in range(1,10):
 
-    elif a==0:
+        if matriz[i-1] ==  " ":
 
-        DibujarX(posi)
+            if posi==i:
+
+
+                if a==1:
+                    
+                    DibujarC(posi)
+
+                elif a==0:
+
+                    DibujarX(posi)
 
 #MovimientoPersona
 def MovPersona(ficha):
