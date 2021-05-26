@@ -192,7 +192,20 @@ def ganar(matriz,i):
             messagebox.showinfo(message="Ganador ficha "+ i ,title="Fin de la Partida.")
             
             Reinicio(matriz)
+#PcvsPc
+def MovPcvsPc(ficha):
+    
+    MovPc(ficha)
 
+    if ficha==0:
+
+        ficha=1
+    else:
+        ficha=0
+
+    MovPc(ficha)
+
+    
 #JugadorvsJugador
 def JugadorC():
 
@@ -235,7 +248,7 @@ def MovPc(ficha):
 
             Cantidad+=1
 
-    print(Cantidad)
+    print("EspaciosVacios:"+str(Cantidad))
 
     posicioneslibres=""
 
@@ -249,7 +262,7 @@ def MovPc(ficha):
 
     posi=int(random.choice(posicioneslibres))+1
 
-    print(posi)
+    print("Posicion:"+str(posi))
 
     if ficha==1:
                     
@@ -286,16 +299,16 @@ def PcvsJugador():
 
     VentanaS2 = tk.Tk()
     VentanaS2.title("Proyecto Concurso")
-    VentanaS2.geometry("100x100")
+    VentanaS2.geometry("250x100")
 
-    Texto = tk.Label(VentanaS2,text="Elegir ficha :")
+    Texto = tk.Label(VentanaS2,text="Elegir ficha para el jugador:")
     Texto.place(x=5,y=10)
 
     BotonX=tk.Button(VentanaS2,text="X",command=FichaX)
-    BotonX.place(x=20,y=50)
+    BotonX.place(x=50,y=50)
 
     BotonC=tk.Button(VentanaS2,text="O",command=FichaO)
-    BotonC.place(x=60,y=50)
+    BotonC.place(x=120,y=50)
 
     VentanaS2.mainloop()
 
@@ -303,8 +316,25 @@ def PcvsPc():
 
     global seleccion
 
+    global VentanaS2
+
     seleccion=1
     VentanaS.destroy()
+
+    VentanaS2 = tk.Tk()
+    VentanaS2.title("Proyecto Concurso")
+    VentanaS2.geometry("250x100")
+
+    Texto = tk.Label(VentanaS2,text="Elegir ficha para el primer movimiento :")
+    Texto.place(x=5,y=10)
+
+    BotonX=tk.Button(VentanaS2,text="X",command=FichaX)
+    BotonX.place(x=50,y=50)
+
+    BotonC=tk.Button(VentanaS2,text="O",command=FichaO)
+    BotonC.place(x=120,y=50)
+
+    VentanaS2.mainloop()
 
 def JugadorvsJugador():
     
@@ -404,11 +434,12 @@ for i in range (1,10) :
         Numero=tk.Label(Frame2,text=str(i),font=("50"))
         Numero.place(x=x,y=y)
 
+Pos=tk.StringVar()
 
 if seleccion == 0:
 
     #Texto
-    TextoPosicion=tk.Label(Frame3,text="Posicion:")
+    TextoPosicion=tk.Label(Frame3,text="Posición:")
     TextoPosicion.place(x=220,y=0)
     
     #Botones
@@ -423,21 +454,43 @@ if seleccion == 0:
 
     #CuadroPosicion
 
-    Pos=tk.StringVar()
-
     Posicion = tk.Entry(Frame3,textvariable=Pos,width=5)
     Posicion.place(x=280,y=0)
 
 elif seleccion == 1:
     TextoPcvsPc=tk.Label(Frame3,text="Modo Pc vs Pc")
-    TextoPcvsPc.place(x=220,y=40)
+    TextoPcvsPc.place(x=220,y=0)
     
+    
+    TextoVersion=tk.Label(Frame3,text="Generación Actual:")
+    TextoVersion.place(x=120,y=20)
+
+    Generacion=tk.StringVar()
+    Generacion.set("0")
+    TextoGeneracion=tk.Label(Frame3,text=Generacion)
+    TextoGeneracion.config(textvariable=Generacion)
+    TextoGeneracion.place(x=250,y=20)
+    
+    #Botones
+    BotonInicio=tk.Button(Frame3,text="Iniciar",command=lambda:MovPcvsPc(ficha))
+    BotonInicio.place(x=180,y=45)
+
+    BotonDetener=tk.Button(Frame3,text="Detener")
+    BotonDetener.place(x=250,y=45)
+
+    BotonReinicio=tk.Button(Frame3,text="Reiniciar",command=lambda:Reinicio(matriz))
+    BotonReinicio.place(x=330,y=45)
+    
+    ##BotonesSinFuncion
+    BotonC = tk.Button(Frame3)
+    BotonX = tk.Button(Frame3)
+
 elif seleccion == 2:
     #Texto
     TextoPcvsJugador=tk.Label(Frame3,text="Modo Pc vs Jugador ")
     TextoPcvsJugador.place(x=220,y=0)
 
-    TextoPosicion=tk.Label(Frame3,text="Posicion:")
+    TextoPosicion=tk.Label(Frame3,text="Posición:")
     TextoPosicion.place(x=220,y=30)
     
     #Botones
